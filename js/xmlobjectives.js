@@ -2,7 +2,7 @@ var app = angular.module('surfacearea', []);
 app.controller('myCtrl', function($scope) {
  $scope.appTitle = "XML Objectives Generator for D2L Brightspace";
   $scope.directions = "Objectives are separated by new lines. The name, optional description, and optional identifier are separted by tabs. For the best results copy directly from MS Excel (without headers)."
-  $scope.zipdirections = "Zip the files together. Do not rename the files, the competency file is referenced in the manifest file. The zip file can be called anything. Import into a D2L course.";
+  $scope.zipdirections = "Zip the files together. Do not rename the files, the competency file is referenced in the manifest file. The zip file can be called anything. Import into a D2L course. Warning: if you download more than once then windows will automatically add a number to the end of the file name.";
   $scope.list = ['Objective 1 name\tdescription 1\toptional identifier 1', 'Objective 2 name\tdescription 2\toptional identifier 2'];
   $scope.objective = {
     objectiveStart: '<CompetencyObject xsi:type="Objective">',
