@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>D2L Brightspace Bulk Tool Generator</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+
+      <link rel="stylesheet" href="css/style.css">
+
+  
+</head>
+
+<body>
+<div ng-app="bulkenroll" ng-controller="myCtrl" class="container">
+  <h1>{{appTitle}}</h1>
+  <hr>
+  <p><small>separate all values on new lines</small></p>
+  <div class="row">
+    <div class="col-sm-6">
+      <label for="users">User Names:</label>
+      <textarea id="users" ng-model="userOb.username" ng-list="&#10;" ng-trim="false" class="form-control" rows="5" placeholder="User names go here separated by new lines"></textarea>
+      <label for="userids">User Org ID Numbers (optional):</label>
+      <textarea id="userids" ng-model="userOb.idnum" ng-list="&#10;" ng-trim="false" class="form-control" rows="5" placeholder="User Org ID go here separated by new lines"></textarea>
+      <label for="role">Role (only needed for enroll):</label>
+      <input id="role" ng-model="role" placeholder="Org Role">
+      <label for="courseIds">Course Org ID Numbers</label>
+      <textarea id="courseIds" ng-model="courseIds" ng-list="&#10;" ng-trim="false" class="form-control" rows="5" placeholder="Course Org IDs go here separated by new lines"></textarea>
+    </div>
+    <div class="col-sm-6">
+      <label for="enrollOutput">Enroll (click to select all):</label>
+      <div class="scroll" onclick="selectText('enrollOutput')" id="enrollOutput"><div ng-trim="false" ng-repeat="y in courseIds"><div ng-trim="false" ng-repeat="x in userOb.username track by $index">{{enroll.a+','+ x +','+ userOb.idnum[$index] +',' + role +','}}{{y +"\n"}}</div></div></div><br>
+      <input type="button" id="dwn-enroll-csv" value="Download enroll.csv" />
+      
+      <hr/>
+       <label for="unenrollOutput">Unenroll (click to select all):</label>
+      <div class="scroll" onclick="selectText('unenrollOutput')" id="unenrollOutput"><div ng-trim="false" ng-repeat="y in courseIds"><div ng-trim="false" ng-repeat="x in userOb.username track by $index">{{enroll.b+','+ x +','+ userOb.idnum[$index] +','}}{{y +"\n"}}</div></div></div><br>
+        <input type="button" id="dwn-unenroll-csv" value="Download unenroll.csv" />
+    </div>
+  </div>
+
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
+
+    <script src="js/index.js"></script>
+
+</body>
+</html>
