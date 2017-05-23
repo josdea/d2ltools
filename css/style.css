@@ -1,0 +1,38 @@
+footer{
+    margin-top: 5em;
+    background-color: white;
+}
+footer ul {
+  list-style: none;
+  margin: none;
+  padding: none;
+  /*background-color: #f1f1f1;*/
+text-align: center;
+}
+footer ul li{
+  text-align: center;
+  display: inline;
+  
+}
+
+footer a:link{
+    display: inline;
+
+}
+footer ul li a{
+  padding: 2em;
+}
+/*footer li:hover {
+    background-color: #555;
+    color: white;
+}*/
+
+footer li{
+  border-right: 1px;
+  border-right-style: solid;
+  /*border-color: black;*/
+}
+footer li:last-of-type{
+  border: none;
+}
+
