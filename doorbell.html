@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Doorbell .io integration button</title>
+  
+  
+  
+  
+  
+</head>
+
+<body>
+  <style>
+  #doorbell-button {
+    background-color: #117BB8;
+  }
+</style>
+<script type="text/javascript">
+  window.doorbellOptions = {
+    strings: {
+      "feedback-button-text": "eLearn Question - Josh or Royce",
+      title: "eLearn Question or Help",
+  
+      "feedback-textarea-placeholder": "Need help with an ed-tech tool...",
+  
+      "email-input-placeholder": "Your PSCC email address",
+      tags: "elearndocs",
+      "submit-button-text": "Send",
+      "message-success": "Thanks, we will contact you as soon as possible!",
+      "message-error-missing-email": "Your email address is required",
+      "message-error-invalid-email": "Invalid email address",
+      "message-error-missing-message": "Your message is required",
+      "message-error-message-too-short": "Your message is too short"
+    },
+  
+    appKey: "M7lSIWcucfDnhDPrlx2X6Gy6aJ78pe0W81EnbMzU0Zwf8LQL6sUBuJ8jqBQH19F1"
+  };
+  (function(w, d, t) {
+    var hasLoaded = false;
+    function l() {
+      if (hasLoaded) {
+        return;
+      }
+      hasLoaded = true;
+      window.doorbellOptions.windowLoaded = true;
+      var g = d.createElement(t);
+      g.id = "doorbellScript";
+      g.type = "text/javascript";
+      g.async = true;
+      g.src = "https://embed.doorbell.io/button/4956?t=" + new Date().getTime();
+      (d.getElementsByTagName("head")[0] || d.getElementsByTagName("body")[0])
+        .appendChild(g);
+    }
+    if (w.attachEvent) {
+      w.attachEvent("onload", l);
+    } else if (w.addEventListener) {
+      w.addEventListener("load", l, false);
+    } else {
+      l();
+    }
+    if (d.readyState == "complete") {
+      l();
+    }
+  })(window, document, "script");
+  
+  function showDoorbellModal() {
+    doorbell.show(); // The doorbell object gets created by the doorbell.js script
+  }
+</script>
+<script>
+  document.getElementById("doorbell-powered-by").style.display = "none";
+</script>
+
+<h1>Doorbell.io Widget</h1>
+ <p>The button in the bottom right is coded into a widget released to instructors only.</p><p>This allows them to ask the d2l admins for help from within their course as well as the org homepage.</p><p>When the instructor completes the 'doorbell' request then the 2 admins receive and email and can reply directly. It also opens a ticket in doorbell until a response goes through. Replace variables can also be used to send through the originating course and username.</p>
+
+<!-- The button below can also be used to open the form -->
+<button type="button" onclick="showDoorbellModal();">Show Doorbell form</button>
+  
+  
+</body>
+</html>

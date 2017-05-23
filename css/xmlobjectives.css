@@ -1,0 +1,14 @@
+div#xmlOutput {
+    width: 100%;
+    height: 450px;
+    word-wrap: break-word;
+/*     overflow-x: hidden; */
+    overflow-y: scroll;
+}
+input{
+  width: 95%;
+  
+}
+#dwn-btn-txt, #dwn-btn-xml{
+  width: auto;
+}

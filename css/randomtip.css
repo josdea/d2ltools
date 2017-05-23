@@ -1,0 +1,56 @@
+body {
+  background-color: #AAA;
+}
+
+div {
+  padding: 1em;
+  background-color: #FFF;
+  position: relative;
+}
+
+h1 {
+  font-family: Calibri;
+  font-size: 24px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 20px;
+  color: #2e74b5;
+  text-align: center;
+}
+
+p,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+  font-size: 17px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  display: block;
+  color: dodgerblue;
+}
+
+.nexttip{
+  position: absolute;
+    bottom: 0;
+    right: 0;
+  margin: .5em;
+}
+
+.previoustip{
+  position: absolute;
+    bottom: 0;
+    left: 0;
+  margin: .5em;
+}

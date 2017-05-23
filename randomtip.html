@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>Random Tip Widget External JSON array</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/randomtip.css">
+
+  
+</head>
+
+<body>
+  
+<!--change tips file location in the html section.  Hit run or refresh the page to get a new tip.  You could also load the json array from a separate file too.  I originally made this as a widget for an LMS-->
+
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<div>
+  <h1 id="tiptitle">Tip of the Day! - Title</h1>
+  <p id="tipcontent">tip content</p>
+  <a title="Read more about it here" href="http://www.example.com/" target="_blank" id="url">See More</a>
+  <p> <a class="nexttip" href="#" role="button" onclick="nextTip()">Next</a>
+    <a class="previoustip" href="#" role="button" onclick="previousTip()">Previous</a></p>
+
+</div>
+<script src="https://elearn.pstcc.edu/Shared/templates/jsfiles/d2ltips2.js"></script>
+  
+    <script src="js/randomtip.js"></script>
+
+</body>
+</html>

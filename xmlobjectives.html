@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>XML Competencies Objectives Generator for D2L</title>
+  
+  
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+
+      <link rel="stylesheet" href="css/xmlobjectives.css">
+
+  
+</head>
+
+<body>
+  <div ng-app="surfacearea" ng-controller="myCtrl" class="container">
+  <h1>{{appTitle}}</h1>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6">
+      <p>{{directions}}</p><p>Name | Description <small>(optional)</small> | Identifier <small>(optional)</small></p>
+      <label for="comment">Objectives:</label>
+      <textarea ng-model="list" ng-list="&#10;" ng-trim="false" class="form-control" rows="20" id="orgIds" placeholder="Objectives on separate lines. Separate the name, description, and identifier by tabs."></textarea>
+    </div>
+    <div class="col-sm-6">
+      <label for="xmlOutput">XML Output (click to select all):</label>
+      <div onclick="selectText('xmlOutput')" id="xmlOutput">{{xml.header}}
+        <div ng-trim="false" ng-repeat="x in list track by $index">{{objective.objectiveStart}}{{objective.nameStart}}{{x|split:'\t':0}}{{objective.nameEnd}}{{objective.descriptionStart}}{{x|split:'\t':1}}{{objective.descriptionEnd}}{{objective.descriptionIsHTML}}{{objective.additionalIdStart}}{{x|split:'\t':2}}{{objective.additionalIdEnd}}{{objective.theRestofit}}{{objective.objectiveEnd}}</div>{{xml.footer}}</div>
+      <br><hr>
+      <input type="button" id="dwn-btn-xml" value="Download .xml files: competencies and manifest" /><hr>
+      <p>{{zipdirections}}</p>
+    </div>
+  </div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
+
+    <script src="js/xmlobjectives.js"></script>
+
+</body>
+</html>
