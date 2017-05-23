@@ -35,4 +35,7 @@ footer li{
 footer li:last-of-type{
   border: none;
 }
+footer .name{
+  text-align: center;
+}
 
