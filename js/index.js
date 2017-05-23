@@ -1,7 +1,7 @@
 
 var app = angular.module('bulkenroll', []);
 app.controller('myCtrl', function ($scope) {
-  $scope.appTitle = "D2L Bulk Tools Generator";
+  $scope.appTitle = "Brightspace D2L Bulk Tools Generator";
   $scope.courseIds = ['12345.201720', '54321.201720']
   $scope.role = "Banner-Student";
   $scope.enroll = {
