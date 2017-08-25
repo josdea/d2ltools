@@ -58,22 +58,22 @@
               <mark>Create new grade item for unrecognized items</mark>
             </li>
             <li>Complete the details required (points, categories)</li>
-
+            <li>Use the
+              <mark>Bulk Edit</mark> option from your
+              <mark>manage grades</mark> tab within the
+              <mark>Grades</mark> tool to add more details, categories, and values</li>
 
         </ul>
 
-        <p>Use the
-          <mark>Bulk Edit</mark> option from your
-          <mark>manage grades</mark> tab within the
-          <mark>Grades</mark> tool to add more details, categories, and values</p>
-        <p><em>The 'preview import' screen will say 'no items found' since you aren't importing grade values, just grade items. Don't worry, it'll work.</em></p>
+        
+       
       </div>
       <div class="col">
 
         <div class="form-group">
 
           <label for="previewOutput">Grade Items Preview</label>
-          <textarea v-model="previewOutput" class="form-control" id="previewOutput" rows="7"></textarea>
+          <textarea v-model="previewOutput" class="form-control" id="previewOutput" rows="7" readonly></textarea>
 
           <label for="textOutput">CSV Output</label>
           <textarea v-model="csvOutput" class="form-control" id="textOutput" rows="7"></textarea>
@@ -81,6 +81,7 @@
         <input v-on:click="downCSV" type="button" id="download-csv" value="Download Grades.csv" />
       </div>
     </div>
+    <p><em>The 'preview import' screen will say 'no items found' since you aren't importing grade values, just grade items. Don't worry, it'll work.</em></p>
     <hr>
     <div class="row">
       <div class="col"><img src="./assets/import.jpg" alt="screenshot of import button"></div>
