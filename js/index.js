@@ -34,17 +34,17 @@ app.controller('myCtrl', function ($scope) {
   };
 });
 
-function selectText(enrollOutput) {
-  if (document.selection) {
-    var range = document.body.createTextRange();
-    range.moveToElementText(document.getElementById(enrollOutput));
-    range.select();
-  } else if (window.getSelection) {
-    var range = document.createRange();
-    range.selectNode(document.getElementById(enrollOutput));
-    window.getSelection().addRange(range);
-  }
-}
+// function selectText(enrollOutput) {
+//   if (document.selection) {
+//     var range = document.body.createTextRange();
+//     range.moveToElementText(document.getElementById(enrollOutput));
+//     range.select();
+//   } else if (window.getSelection) {
+//     var range = document.createRange();
+//     range.selectNode(document.getElementById(enrollOutput));
+//     window.getSelection().addRange(range);
+//   }
+// }
 
 function download(filename, text) {
   var element = document.createElement('a');
@@ -61,15 +61,16 @@ function download(filename, text) {
 
 // Start file download.
 document.getElementById("dwn-enroll-csv").addEventListener("click", function () {
-  var text = document.getElementById("enrollOutput").textContent;
-  var d = new Date();
-  var filename = "d2l enroll " + d.toDateString() + ".csv";
-  download(filename, text);
+  let text = document.getElementById("enrollOutput").textContent;
+  alert(text);
+  let d = new Date();
+  let filename = "d2l enroll " + d.toDateString() + ".csv";
+  // download(filename, text);
 }, false);
 
 document.getElementById("dwn-unenroll-csv").addEventListener("click", function () {
-  var text = document.getElementById("unenrollOutput").textContent;
-  var d = new Date();
-  var filename = "d2l unenroll " + d.toDateString() + ".csv";
+  let text = document.getElementById("unenrollOutput").textContent;
+  let d = new Date();
+  let filename = "d2l unenroll " + d.toDateString() + ".csv";
   download(filename, text);
 }, false);

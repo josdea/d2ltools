@@ -48,20 +48,11 @@
       </div>
       <div class="col-sm-6">
         <label for="enrollOutput">Enroll (click to select all):</label>
-        <div class="scroll" onclick="selectText('enrollOutput')" id="enrollOutput">
-          <div ng-trim="false" ng-repeat="y in courseIds">
-            <div ng-trim="false" ng-repeat="x in userOb.username track by $index">{{enroll.a+','+ x +','+ userOb.idnum[$index] +',' + role +','}}{{y +"\n"}}</div>
-          </div>
-        </div><br>
+        <div class="scroll" id="enrollOutput"><div ng-trim="false" ng-repeat="y in courseIds"><div ng-trim="false" ng-repeat="x in userOb.username track by $index">{{enroll.a+','+ x +','+ userOb.idnum[$index] +',' + role +','}}{{y +"\n"}}</div></div></div><br>
         <input type="button" id="dwn-enroll-csv" value="Download enroll.csv" />
 
         <hr/>
-        <label for="unenrollOutput">Unenroll (click to select all):</label>
-        <div class="scroll" onclick="selectText('unenrollOutput')" id="unenrollOutput">
-          <div ng-trim="false" ng-repeat="y in courseIds">
-            <div ng-trim="false" ng-repeat="x in userOb.username track by $index">{{enroll.b+','+ x +','+ userOb.idnum[$index] +','}}{{y +"\n"}}</div>
-          </div>
-        </div><br>
+        <label for="unenrollOutput">Unenroll (click to select all):</label><div class="scroll" id="unenrollOutput"><div ng-trim="false" ng-repeat="y in courseIds"><div ng-trim="false" ng-repeat="x in userOb.username track by $index">{{enroll.b+','+ x +','+ userOb.idnum[$index] +','}}{{y +"\n"}}</div></div></div><br>
         <input type="button" id="dwn-unenroll-csv" value="Download unenroll.csv" />
       </div>
     </div>
