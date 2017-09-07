@@ -62,10 +62,10 @@ function download(filename, text) {
 // Start file download.
 document.getElementById("dwn-enroll-csv").addEventListener("click", function () {
   let text = document.getElementById("enrollOutput").textContent;
-  alert(text);
+  // alert(text);
   let d = new Date();
   let filename = "d2l enroll " + d.toDateString() + ".csv";
-  // download(filename, text);
+  download(filename, text);
 }, false);
 
 document.getElementById("dwn-unenroll-csv").addEventListener("click", function () {
