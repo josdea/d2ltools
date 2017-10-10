@@ -18,6 +18,9 @@
         .setup input {
             margin-bottom: 1rem;
         }
+        footer{
+            margin-top: 15rem;
+        }
     </style>
 
 </head>
@@ -33,26 +36,26 @@
                     <label for="1">1) elearn Address Domain</label>
                     <input placeholder="elearn.domain.edu" v-model="domain" type="text" class="form-control" id="1" autocomplete="off">
                     <label for="2">2) JSON Array</label>
-                    <textarea v-model="jsonList2" class="form-control" id="2" rows="7"></textarea>
+                    <textarea :placeholder="jsonList2" v-model="jsonList" class="form-control" id="2" rows="7"></textarea>
 
                 </div>
                 <ul>
                     <li>Enter your Brightspace Domain Address</li>
-                    <li v-if="(domain!='')">Verify you are <a title="this link won't work if you have not yet filled in the domain above" target="_blank"
-                            :href="http+domain">logged in</a> as a user who can access these pages of <a title="this link will allow you to verify if you have dataset access permissions if you've already logged in"
-                            target="_blank" :href="http+domain+bdsView">datahub and datasets</a></li>
-                    <li v-if="(domain!='')">Copy all the text that appears on this <a target="_blank" :href="http+domain+bdsList">data sets screen</a> into the
+                    <li>Verify you are <a :title="domainrequired" target="_blank"
+                            :href="domain!='' ? http+domain: null" >logged in</a> as a user who can access <a :title="verifyaccess"
+                            target="_blank" :href="domain!='' ? http+domain+bdsView : null">datahub and datasets</a></li>
+                    <li>Copy all the text that appears on this <a type="button" class="btn btn-primary btn-sm" :title="domainrequired" target="_blank" :href="domain!='' ? http+domain+bdsList : null">data sets screen</a> into the
                         <mark>JSON Array</mark> box above. (this represents your available data sets)
-                        <li v-if="(domain!='')">Select the datasets to the right that you would like to download. (speed depends on size and number
+                        <li>Select the data sets that you would like to download. (speed depends on size and number
                             of downloads)
                             <li>If you're downloading more than one then verify that your browser isn't blocking popups. Chrome blocks any downloads greater than 1 unless you allow popups from this site. </li>
                 </ul>
 
             </div>
-            <div class="col">
+            <div class="col" v-if="jsonList.length>0">
                 <button class="btn btn-primary btn-sm" v-on:click="downloadAll">Download All</button>
                 <button class="btn btn-primary btn-sm" v-on:click="downloadSelected">Download Selected</button>
-                <ol>
+                <ol >
                     <hr>
                     <li v-for="(set,key) in getjsonarray">
                         <input name="settype" type="checkbox" :value="set.PluginId"> <a target="_blank" :href="getDownloadLink(set.PluginId)">{{set.Name}}</a>                        (<small>{{(set.DownloadSize/1000000).toFixed(2)+' mb'}}</small>)
@@ -83,13 +86,15 @@
             el: "#app",
             data: {
                 http: "https://",
+                domainrequired: "this link won't work unless you have entered your domain above",
+                verifyaccess: "this link will allow you to verify if you have dataset access permissions if you've already logged in",
                 appTitle: "Brightspace D2L Dataset Downloader",
                 domain: "",
                 bdsList: "/d2l/api/lp/1.15/dataexport/bds/list",
                 // dsList: "/d2l/api/lp/1.13/dataExport/list",
                 bdsDownload: "/d2l/api/lp/1.15/dataexport/bds/download/",
                 bdsView: "/d2l/datahub/dataexport/List#2",
-                jsonList: "data gets pasted here",
+                jsonList: [],
                 jsonList2: `[
 	{
 		"PluginId": "d9f4035c-cb0f-45af-9646-08e46b341b1f",
@@ -119,7 +124,7 @@
             },
             computed: {
                 getjsonarray: function () {
-                    return JSON.parse(this.jsonList2);
+                    return JSON.parse(this.jsonList);
                 }
             },
             methods: {
