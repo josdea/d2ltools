@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dataset Downloader - D2L Brightspace - VueJS</title>
+
+
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/ga.js"></script>
+    <style>
+        .container {
+            margin-top: 2rem;
+        }
+
+        .setup input {
+            margin-bottom: 1rem;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container" id="app">
+        <h1>{{appTitle}}</h1>
+        <hr>
+        <div class="row">
+            <div class="col">
+
+                <div class="form-group setup">
+                    <label for="1">1) elearn Address Domain</label>
+                    <input placeholder="elearn.domain.edu" v-model="domain" type="text" class="form-control" id="1" autocomplete="off">
+                    <label for="2">2) JSON Array</label>
+                    <textarea v-model="jsonList2" class="form-control" id="2" rows="7"></textarea>
+
+                </div>
+                <ul>
+                    <li>Enter your Brightspace Domain Address</li>
+                    <li v-if="(domain!='')">Verify you are <a title="this link won't work if you have not yet filled in the domain above" target="_blank"
+                            :href="http+domain">logged in</a> as a user who can access these pages of <a title="this link will allow you to verify if you have dataset access permissions if you've already logged in"
+                            target="_blank" :href="http+domain+bdsView">datahub and datasets</a></li>
+                    <li v-if="(domain!='')">Copy all the text that appears on this <a target="_blank" :href="http+domain+bdsList">data sets screen</a> into the
+                        <mark>JSON Array</mark> box above. (this represents your available data sets)
+                        <li v-if="(domain!='')">Select the datasets to the right that you would like to download. (speed depends on size and number
+                            of downloads)
+                            <li>If you're downloading more than one then verify that your browser isn't blocking popups. Chrome blocks any downloads greater than 1 unless you allow popups from this site. </li>
+                </ul>
+
+            </div>
+            <div class="col">
+                <button class="btn btn-primary btn-sm" v-on:click="downloadAll">Download All</button>
+                <button class="btn btn-primary btn-sm" v-on:click="downloadSelected">Download Selected</button>
+                <ol>
+                    <hr>
+                    <li v-for="(set,key) in getjsonarray">
+                        <input name="settype" type="checkbox" :value="set.PluginId"> <a target="_blank" :href="getDownloadLink(set.PluginId)">{{set.Name}}</a>                        (<small>{{(set.DownloadSize/1000000).toFixed(2)+' mb'}}</small>)
+
+                    </li>
+                </ol>
+            </div>
+        </div>
+ 
+    <footer>
+        <h2><small>Other Tools</small></h2>
+        <ul>
+            <li><a href="./gradeitems.html">Bulk Grade Item Generator</a></li>
+            <li><a href="./dataset.html">Dataset Downloader</a></li>
+            <li><a href="./index.html">Enroll / Unenroll CSV Generator</a></li>
+            <li><a href="./xmlobjectives.html">Objectives Generator</a></li><br>
+            <li><a href="./randomtip.html">Random Tip Widget</a></li>
+            <li><a href="./doorbell.html">Doorbell.io integration Example</a></li>
+        </ul>
+        <p class="name"><small>Created by <a href="http://thejoshdean.com">Josh Dean</a> 2017</small></p>
+    </footer>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.4/vue.min.js'></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                http: "https://",
+                appTitle: "Brightspace D2L Dataset Downloader",
+                domain: "",
+                bdsList: "/d2l/api/lp/1.15/dataexport/bds/list",
+                // dsList: "/d2l/api/lp/1.13/dataExport/list",
+                bdsDownload: "/d2l/api/lp/1.15/dataexport/bds/download/",
+                bdsView: "/d2l/datahub/dataexport/List#2",
+                jsonList: "data gets pasted here",
+                jsonList2: `[
+	{
+		"PluginId": "d9f4035c-cb0f-45af-9646-08e46b341b1f",
+		"Name": "Announcements",
+		"Description": "The announcements dataset provides details on the announcements a user has created for your org units.",
+		"CreatedDate": "2017-10-10T07:50:56.904Z",
+		"DownloadLink": "https://elearn.pstcc.edu/d2l/api/lp/1.15/dataexport/bds/download/d9f4035c-cb0f-45af-9646-08e46b341b1f",
+		"DownloadSize": 5291162
+	},
+	{
+		"PluginId": "b12a4203-3169-4dbb-9e6b-e979fc1620a9",
+		"Name": "Assignment Submission Details",
+		"Description": "The assignment submission details data set provides details of information submitted within each assignment for all your org units.",
+		"CreatedDate": "2017-10-10T08:57:06.515Z",
+		"DownloadLink": "https://elearn.pstcc.edu/d2l/api/lp/1.15/dataexport/bds/download/b12a4203-3169-4dbb-9e6b-e979fc1620a9",
+		"DownloadSize": 37556157
+	},
+	{
+		"PluginId": "041dde83-3a29-4a37-97de-9ee615318111",
+		"Name": "Assignment Submissions",
+		"Description": "The assignment submission dataset provides the high level details for each assignment submission for all your org units.",
+		"CreatedDate": "2017-10-10T08:29:38.934Z",
+		"DownloadLink": "https://elearn.pstcc.edu/d2l/api/lp/1.15/dataexport/bds/download/041dde83-3a29-4a37-97de-9ee615318111",
+		"DownloadSize": 1237415052
+	}]`,
+                downloadArray: []
+            },
+            computed: {
+                getjsonarray: function () {
+                    return JSON.parse(this.jsonList2);
+                }
+            },
+            methods: {
+                getDownloadLink: function (pluginid) {
+                    return this.http + this.domain + this.bdsDownload + pluginid;
+                },
+                downloadAll: function () {
+                    this.downloadArray = this.getAllPlugInIds();
+                    this.beginDownload();
+                },
+                downloadSelected: function () {
+                    this.downloadArray = this.getSelectedPlugInIds();
+                    this.beginDownload();
+                },
+                getAllPlugInIds: function () {
+                    let pii = [];
+                    for (var prop in this.getjsonarray) {
+                        pii.push(this.getjsonarray[prop].PluginId);
+                    }
+                    return pii;
+                },
+                getSelectedPlugInIds: function () {
+                    let pii = [];
+                    $.each($("input[name='settype']:checked"), function () {
+                        pii.push($(this).val());
+                    });
+                    return pii;
+                },
+                beginDownload: function () {
+                    let dArray = this.downloadArray;
+                    dArray.forEach(function (pii) {
+                        window.open(app.getDownloadLink(pii));
+                    });
+                }
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
