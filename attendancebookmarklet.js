@@ -160,7 +160,12 @@ function changesessions(fields, dates) {
 
 var fieldnames = getsessions($("input[name*='name_']"));
 
-alert("Total Sessions Required: " + workingDateArray.length + ". You need to add " + (workingDateArray.length-fieldnames.length) + " more sessions.");
+if(workingDateArray.length >= fieldnames.length){
+    alert("Total Sessions Required: " + workingDateArray.length + ". You need " + (workingDateArray.length-fieldnames.length) + " more sessions.");
+}else{
+    alert("Total Sessions Required: " + workingDateArray.length + ". You need " + (fieldnames.length-workingDateArray.length) + " less sessions.");
+}
+
 
 
 changesessions(fieldnames, workingDateArray);
