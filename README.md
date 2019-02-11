@@ -6,4 +6,7 @@ A variety of Brightspace D2L tools to save time.
 - objectives xml generator
 - doorbell.io integration example
 
-Drag the following link to your bookmarks bar (ctrl-shift-b to show it) [Attendance Bookmarklet](javascript: (function () { var jsCode = document.createElement('script'); jsCode.setAttribute('src', 'https://elearn.pstcc.edu/shared/bookmarklet.js'); document.body.appendChild(jsCode); }());)
+Drag the following link to your bookmarks bar (ctrl-shift-b to show it) 
+	
+<a href="javascript: (function () { var jsCode = document.createElement('script'); jsCode.setAttribute('src', 'https://elearn.pstcc.edu/shared/bookmarklet.js'); document.body.appendChild(jsCode); }());">Attendance Bookmarklet</a>
+
