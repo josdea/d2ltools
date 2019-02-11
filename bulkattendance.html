@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>D2L Brightspace Bulk Tool Generator</title>
+
+
+  <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css'>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/ga.js"></script>
+  <style>
+    div#xmlOutput,
+    .scroll {
+      width: 100%;
+      height: 200px;
+      word-wrap: break-word;
+      overflow-y: scroll;
+    }
+
+    input {
+      width: 95%;
+    }
+
+    #dwn-unenroll-csv,
+    #dwn-enroll-csv {
+      width: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Bulk Attendace</h1>
+    <hr>
+        <div class="row">
+      <div class="col-sm-6">
+          
+        <ul>
+<li>Make sure your browser bookmark bar is showing (ctrl-shift-b in Chrome)</li>
+<li>Drag the following link to your bookmarks bar</li>
+<li>Navigate to the edit attendance register screen and click the bookmarklet</li>
+<li>  <a href="javascript: (function () { var jsCode = document.createElement('script'); jsCode.setAttribute('src', 'https://elearn.pstcc.edu/shared/bookmarklet.js'); document.body.appendChild(jsCode); }());">Attendance Generator D2L</a></li>
+<li>Follow the prompts to add the attendance dates</li>
+        </ul>
+        
+      </div>
+      <div class="col-sm-6">
+   <img class="mx-auto d-block img-fluid" src="./assets/attendancescreenshot.png" alt="screenshot of the attendance tool">
+      </div>
+    </div>
+    <footer>
+      <h2><small>Other Tools</small></h2>
+      <ul>
+          <li><a href="./gradeitems.html">Bulk Grade Item Generator</a></li>
+          <li><a href="./dataset.html">Dataset Downloader</a></li>
+          <li><a href="./index.html">Enroll / Unenroll CSV Generator</a></li>
+          <li><a href="./xmlobjectives.html">Objectives Generator</a></li><br>
+          <li><a href="./randomtip.html">Random Tip Widget</a></li>
+          <li><a href="./doorbell.html">Doorbell.io integration Example</a></li>
+      </ul>
+      <p class="name"><small>Created by <a href="http://thejoshdean.com">Josh Dean</a> 2017</small></p>
+    </footer>
+  </div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js'></script>
+
+  <script src="js/index.js"></script>
+
+</body>
+
+</html>
